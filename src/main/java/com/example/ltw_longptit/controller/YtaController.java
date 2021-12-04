@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping(path = "/nurse", produces = "application/json")
+@RequestMapping(path = "/yta", produces = "application/json")
 @CrossOrigin(origins = "*")
 public class YtaController {
     @Autowired
@@ -36,6 +36,7 @@ public class YtaController {
 
     @PostMapping(consumes = "application/json")
     public Yta createYta(@RequestBody Yta yta) {
+        System.out.println(yta.getYtaTen());
         return ytaRepository.save(yta);
     }
     //what the fuck

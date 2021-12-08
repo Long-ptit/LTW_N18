@@ -2,8 +2,6 @@ package com.example.frontend.enity;
 
 import lombok.Data;
 
-
-
 @Data
 public class BacSi {
     private int id;

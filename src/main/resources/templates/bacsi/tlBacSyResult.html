@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 15px;
+    }
+
+</style>
+<body>
+
+<h3>Chi tiết chữa bệnh</h3>
+
+
+<table style="border: 5px">
+    <thead>
+    <tr>
+        <th>Tên bác sỹ</th>
+        <th>Ngày vào</th>
+        <th>Id bệnh nhân</th>
+        <th>Tên bệnh nhân</th>
+        <th>Tên bệnh</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+    <tr th:each="kham : ${listKham}">
+        <td th:text="${kham.bacSy.bacsyTen}"></td>
+        <td th:text="${kham.datein}"></td>
+        <td th:text="${kham.benhNhan.id}"></td>
+        <td th:text="${kham.benhNhan.ten}"></td>
+        <td th:text="${kham.benh.ten}"></td>
+
+
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

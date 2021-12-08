@@ -8,80 +8,65 @@ import org.springframework.web.bind.annotation.*;
 import com.example.frontend.enity.BacSi;
 import java.util.*;
 @Controller
+@RequestMapping("/bacsi")
 public class BacSiController {
     private RestTemplate rest = new RestTemplate();
 
-    @GetMapping("/bacsi")
-    public ModelAndView addModeltoView()
+    @GetMapping("/current")
+    public String bacSiForm(Model model)
     {
-        List<BacSi> listBacSi = Arrays.asList(rest.getForObject("http://localhost:8089/bacsi", BacSi[].class));
-        ModelAndView modelAndView = new ModelAndView("/bacsi/dsBacSi");
-        modelAndView.addObject("listBacsi",listBacSi);
-        return modelAndView;
+        List<BacSi> bacSiList = Arrays.asList(rest.getForObject("http://localhost:8080/bacsi", BacSi[].class));
+        model.addAttribute("listBacSi",bacSiList);
+        return "bacsi/dsBacSi";
     }
 
-    @GetMapping("bacsi/them-moi")
-    public String addNew(Model model)
+    @GetMapping("/create")
+    public String createBacSi(Model model)
     {
         BacSi bacsi = new BacSi();
         model.addAttribute("bacsi",bacsi);
-        return "/bacsi/addBacSi";
+        return "bacsi/addBacSi";
     }
 
-    @PostMapping("bacsi/luu")
+    @PostMapping("/save")
     public String save(BacSi bacsi)
     {
-        bacsi.setBacsyBacNghe(bacsi.getBacsyBacNghe());
-        bacsi.setBacsyChuyenMon(bacsi.getBacsyChuyenMon());
-        bacsi.setBacsyCMT(bacsi.getBacsyCMT());
-        bacsi.setBacsyDiaChi(bacsi.getBacsyDiaChi());
-        bacsi.setBacsyNgaySinh(bacsi.getBacsyNgaySinh());
-        bacsi.setBacsySDT(bacsi.getBacsySDT());
-        bacsi.setBacsyTen(bacsi.getBacsyTen());
-        bacsi.setBacsyTrinhDoDaoTao(bacsi.getBacsyTrinhDoDaoTao());
-        bacsi.setBacsyThamNien(bacsi.getBacsyThamNien());
-        rest.postForObject("http://localhost:8089/bacsi", bacsi, BacSi.class);
-        return "redirect:/bacsi";
+        rest.postForObject("http://localhost:8080/bacsi", bacsi, BacSi.class);
+        System.out.println(bacsi.toString());
+        return "redirect:/bacsi/current";
     }
 
-    @PutMapping("bacsi/luu")
-    public String update(BacSi bacsi)
-    {
-        bacsi.setBacsyBacNghe(bacsi.getBacsyBacNghe());
-        bacsi.setBacsyChuyenMon(bacsi.getBacsyChuyenMon());
-        bacsi.setBacsyCMT(bacsi.getBacsyCMT());
-        bacsi.setBacsyDiaChi(bacsi.getBacsyDiaChi());
-        bacsi.setBacsyNgaySinh(bacsi.getBacsyNgaySinh());
-        bacsi.setBacsySDT(bacsi.getBacsySDT());
-        bacsi.setBacsyTen(bacsi.getBacsyTen());
-        bacsi.setBacsyTrinhDoDaoTao(bacsi.getBacsyTrinhDoDaoTao());
-        bacsi.setBacsyThamNien(bacsi.getBacsyThamNien());
-        rest.put("http://localhost:8089/bacsi", bacsi, bacsi.getId());
-        return "redirect:/bacsi";
-    }
-
-    @RequestMapping("/bacsi/cap-nhat")
+    @RequestMapping("/update")
     public String edit(@RequestParam("id") int id ,Model model)
     {
-        BacSi bacsiEdit = rest.getForObject("http://localhost:8089/bacsi/{id}", BacSi.class,id);
-        model.addAttribute("bacsi",bacsiEdit);
+        BacSi bacsi = rest.getForObject("http://localhost:8080/bacsi/{id}", BacSi.class,id);
+        model.addAttribute("bacsi",bacsi);
         return "/bacsi/editBacSi";
     }
 
-    @GetMapping("bacsi/xoa")
-    public String delete(@RequestParam int id)
+    @PostMapping("/saveEdit")
+    public String update(BacSi bacSi)
     {
-        rest.delete("http://localhost:8089/bacsi/{id}",id);
-        return "redirect:/bacsi";
+        System.out.println(bacSi.getId());
+        rest.put("http://localhost:8080/bacsi/{id}",bacSi,bacSi.getId());
+        return "redirect:/bacsi/current";
     }
 
-    @GetMapping("bacsi/tim-kiem")
-    public ModelAndView search(@RequestParam String keyword,Model model)
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int id)
     {
-        List<BacSi> listBacsi = Arrays.asList(rest.getForObject("http://localhost:8089/bacsi/search/{keyword}", BacSi[].class,keyword));
-        ModelAndView modelAndView = new ModelAndView("/doctor/dsBacSi");
-        modelAndView.addObject("listBacsi",listBacsi);
-        return modelAndView;
+        rest.delete("http://localhost:8080/bacsi/{id}",id);
+        return "redirect:/bacsi/current";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("keyword123") String keyword,Model model)
+    {
+        if (keyword.equals(""))  return "redirect:/bacsi/current";
+        List<BacSi> bacSiList = Arrays.asList(rest.getForObject("http://localhost:8080/bacsi/search/{keyword}",BacSi[].class, keyword));
+        model.addAttribute("listBacSi", bacSiList);
+        return "/bacsi/dsBacSi";
     }
 
 

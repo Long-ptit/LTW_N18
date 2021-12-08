@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class YTa {
+public class Yta {
         private int id;
         private int ytaThamNien;
         private String ytaCMT;

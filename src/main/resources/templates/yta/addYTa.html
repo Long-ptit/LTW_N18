@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,6 +29,7 @@
             <label>Địa Chỉ:</label>
             <input type="text" class="form-control" th:field="*{ytaDiaChi}"/>
         </div>
+            <p th:if="${#fields.errors('ytaDiaChi')}" th:text="*{ytaDiaChi}">
         <div class="form-group">
             <label>Số điện thoại:</label>
             <input type="text" class="form-control" th:field="*{ytaSDT}"/>

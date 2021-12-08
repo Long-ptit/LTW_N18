@@ -10,8 +10,34 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://localhost/weblayout/tablestyle.css">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // Activate tooltip
+            $('[data-toggle="tooltip"]').tooltip();
 
+            // Select/Deselect checkboxes
+            var checkbox = $('table tbody input[type="checkbox"]');
+            $("#selectAll").click(function(){
+                if(this.checked){
+                    checkbox.each(function(){
+                        this.checked = true;
+                    });
+                } else{
+                    checkbox.each(function(){
+                        this.checked = false;
+                    });
+                }
+            });
+            checkbox.click(function(){
+                if(!this.checked){
+                    $("#selectAll").prop("checked", false);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
@@ -19,21 +45,22 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Quản lí bác sĩ</h2>
+                    <h2>Quản lí Bệnh</h2>
                 </div>
                 <div class="col-sm-6">
-                    <a th:href="@{/bacsi/create}" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Thêm bác sĩ</span></a>
+                    <a th:href="@{/benh/create}" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Thêm Thuốc</span></a>
 
                 </div>
             </div>
         </div>
-        <form th:action="@{/bacsi/search}" method="get">
+        <form th:action="@{/benh/search}" method="get">
             <div class="row">
                 <div class="col-xs-6 col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm" id="txtSearch" name="keyword123"/>
+
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" id="txtSearch" name="key"/>
                         <div class="input-group-btn">
-                            <button class="btn btn-success" type="submit">
+                            <button  class="btn btn-success" type="submit" >
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </div>
@@ -45,35 +72,23 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Thâm niên</th>
-                <th>Chứng minh thư</th>
                 <th>Tên</th>
-                <th>Số điện thoại</th>
-                <th>Địa chỉ</th>
-                <th>Ngày sinh</th>
-                <th>Bậc nghề</th>
-                <th>Trình độ</th>
-                <th>Chuyên môn</th>
-                <th>Actions</th>
+                <th>Mô Tả</th>
+
             </tr>
             </thead>
             <tbody>
+            <tr>
 
-            <tr th:each="bacsi : ${listBacSi}">
-                <td th:text="${bacsi.id}"></td>
-                <td th:text="${bacsi.bacsyThamNien} + ' năm'"></td>
-                <td th:text="${bacsi.bacsyCMT}"></td>
-                <td th:text="${bacsi.bacsyTen}"></td>
-                <td th:text="${bacsi.bacsySDT}"></td>
-                <td th:text="${bacsi.bacsyDiaChi}"></td>
-                <td th:text="${bacsi.bacsyNgaySinh}"></td>
-                <td th:text="${bacsi.bacsyBacNghe}"></td>
-                <td th:text="${bacsi.bacsyTrinhDoDaoTao}"></td>
-                <td th:text="${bacsi.bacsyChuyenMon}"></td>
+            <tr th:each="t : ${listBenh}">
+                <td th:text="${t.id}"></td>
+                <td th:text="${t.ten}"></td>
+                <td th:text="${t.moTa}"></td>
+
 
                 <td>
-                    <a th:href="@{/bacsi/update(id=${bacsi.id})}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                    <a th:href="@{/bacsi/delete(id=${bacsi.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    <a th:href="@{/benh/update(id=${t.id})}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <a th:href="@{/benh/delete(id=${t.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                 </td>
             </tr>
             </tbody>

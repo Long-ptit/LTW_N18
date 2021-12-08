@@ -10,7 +10,7 @@
     <title>Quản lí bệnh viện</title>
 </head>
 <body>
-<div class="big__container">
+<div class="big__container" >
     <div class="container">
         <ul class = "root">
             <li><a href="">Liên hệ</a></li>
@@ -18,72 +18,36 @@
             <li>
                 <a href="">Tính lương</a>
                 <ul class = "sub">
-                    <li><a href="">Bác sĩ</a></li>
-                    <li><a href="">Y tá</a></li>
+                    <li><a href="/tinhluong/bacsy">Bác sĩ</a></li>
+                    <li><a href="/tinhluong/yta">Y tá</a></li>
                 </ul>
             </li>
             <li>
                 <a href="">Xem thống kê</a>
                 <ul class = "sub">
-                    <li><a href="">Thống kê doanh thu</a></li>
-                    <li><a href="">Thống kê bệnh nhân</a></li>
-                    <li><a href="">Thống kê thuốc</a></li>
+                    <li><a href="/tk/benh">Thống kê bệnh</a></li>
                 </ul>
             </li>
             <li>
-                <a href="">Quản lí bệnh viện</a>
+                <a href="">Quản lí phòng khám</a>
                 <ul class = "sub">
-                    <li><a href="/bacsi">Quản lí bác sĩ</a></li>
+                    <li><a href="/bacsi/current">Quản lí bác sĩ</a></li>
                     <li><a href="/yta/current">Quản lí y tá</a></li>
                     <li><a href="">Quản lí thuốc</a></li>
-                    <li><a href="">Quản lí khám</a></li>
-                    <li><a href="">Quản lí bệnh nhân</a></li>
+                    <li><a href="/kham">Quản lí khám</a></li>
+                    <li><a href="/benhnhan/current">Quản lí bệnh nhân</a></li>
                 </ul>
             </li>
             <li><a href="">Trang chủ</a></li>
         </ul>
+
     </div>
-    <!-- First Grid -->
-    <div class="w3-row-padding w3-padding-64 w3-container">
-        <div class="w3-content">
-            <div class="w3-twothird">
-                <h1>Dịch vụ trọn gói</h1>
-                <p class="w3-text-grey">Tại phòng khám chất lượng dịch vụ được
-                    đặt lên hàng đầu. Tất cả các dịch vụ đều được phục vụ theo yêu
-                    cầu của khách hàng. Chúng tôi luôn lấy cảm nhận của khách hàng để
-                    làm động lực nâng cao chất lượng chất lượng dịch vụ</p>
-            </div>
-            <img th:src="@{/images/pic1.jpg}" th:style="'width: 320px; height: 250px'"/>
-        </div>
+    <div class="image">
+        <img src="https://cdn.wallpapersafari.com/46/70/fjGlXJ.jpg" alt="">
     </div>
-    <!-- Second Grid -->
-    <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-        <div class="w3-content">
-            <div class="w3-third w3-center">
-                <img th:src="@{/images/pic2.jpg}" th:style="'width: 320px; height: 250px'"/>
-            </div>
-            <div class="w3-twothird">
-                <h1>Đội ngũ Bác sĩ chuyên nghiệp</h1>
-                <p class="w3-text-grey">Tại phòng khám chất lượng dịch vụ được
-                    đặt lên hàng đầu. Tất cả các dịch vụ đều được phục vụ theo yêu
-                    cầu của khách hàng. Chúng tôi luôn lấy cảm nhận của khách hàng để
-                    làm động lực nâng cao chất lượng chất lượng dịch vụ</p>
-            </div>
-        </div>
-    </div>
-    <!-- Third Grid-->
-    <div class="w3-row-padding w3-padding-64 w3-container">
-        <div class="w3-content">
-            <div class="w3-twothird">
-                <h1>Chi phí phải chăng</h1>
-                <p class="w3-text-grey">Tại Phòng khám chất lượng dịch vụ được
-                    đặt lên hàng đầu. Tất cả các dịch vụ đều được phục vụ theo yêu
-                    cầu của khách hàng. Chúng tôi luôn lấy cảm nhận của khách hàng để
-                    làm động lực nâng cao chất lượng chất lượng dịch vụ</p>
-            </div>
-            <img th:src="@{/images/pic3.png}" th:style="'width: 320px; height: 250px'"/>
-        </div>
-    </div>
+
+
+
 
 </div>
 <footer class="footer">

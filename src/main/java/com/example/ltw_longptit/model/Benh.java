@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 
 @Data
@@ -13,7 +14,12 @@ public class Benh {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_benh")
-    private int id;
+    private long id;
+
     @Column
-    private String name;
+    @NotBlank(message = "Tên bệnh không được để trống!")
+    private String ten;
+
+    @Column
+    private String moTa;
 }

@@ -21,7 +21,7 @@ public class ThuocSuDung {
     Thuoc thuoc;
     @ManyToOne
     @JoinColumn(name = "id_donthuoc")//name="tên cột khóa ngoại"
-    HoaDon hoaDon;
+    DonThuoc donThuoc;
 
 
 }

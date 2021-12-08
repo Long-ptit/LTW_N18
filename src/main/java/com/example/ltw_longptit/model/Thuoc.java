@@ -3,6 +3,8 @@ package com.example.ltw_longptit.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -11,9 +13,17 @@ public class Thuoc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_thuoc")
-    private int id;
+    private long id;
+
     @Column
-    private String tenThuoc;
+    @Min(value = 0 , message = "Giá phải lớn hơn 0")
+    private double gia;
+
     @Column
-    private String gia;
+    @NotBlank(message = "Thiếu Tên Thuốc")
+    private  String ten;
+
+    @Column
+   @NotBlank(message = "Thiếu Tên Loại Thuốc")
+    private String loaiThuoc;
 }

@@ -11,7 +11,16 @@ import java.util.List;
 public interface KhamRepository extends JpaRepository<Kham, Integer> {
 
     @Query(value = "select * from kham where datein like %:keyword% and status = 'have'",nativeQuery = true)
+    public List<Kham> getAllKhamByThangMacBenh(@Param("keyword") String keyword);
+
+    @Query(value = "select * from kham where datein like %:keyword%",nativeQuery = true)
     public List<Kham> getAllKhamByThang(@Param("keyword") String keyword);
+
+    @Query(value = "select * from kham where datein like %:keyword% and id_benh = :id",nativeQuery = true)
+    public List<Kham> getAllKhamByBenh(@Param("keyword") String keyword, @Param("id") String id );
+
+    @Query(value = "select distinct(id_benh) from kham where datein like %:keyword% ",nativeQuery = true)
+    public List<Integer> getBenhTrongThang(@Param("keyword") String keyword);
 
     @Query(value = "select distinct(id_bn) from kham where datein like %:keyword% and id_bs = :id  and status = 'have'",nativeQuery = true)
     public List<Integer> getAllKhamByBacSy(@Param("keyword") String keyword, @Param("id") String id);

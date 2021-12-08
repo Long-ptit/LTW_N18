@@ -3,6 +3,7 @@ package com.example.ltw_longptit.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity

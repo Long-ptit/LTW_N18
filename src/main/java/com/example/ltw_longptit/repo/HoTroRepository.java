@@ -14,4 +14,8 @@ public interface HoTroRepository extends JpaRepository<HoTro, Integer> {
 
     @Query(value="SELECT s.* FROM ho_tro s where s.id_kham = :id",nativeQuery = true)
     public List<HoTro> getYTaTheoIdKham(@Param("id") String id);
+
+
+    @Query(value="SELECT count(s.id ) FROM ho_tro s INNER JOIN kham t on t.id_kham=s.id_kham WHERE t.datein LIKE %:keyword% AND s.id_yta = :id ;",nativeQuery = true)
+    public Integer getSoLanHoTro(@Param("keyword") String keyword, @Param("id") String id);
 }

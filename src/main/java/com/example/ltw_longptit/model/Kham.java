@@ -4,7 +4,6 @@ package com.example.ltw_longptit.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -19,9 +18,11 @@ public class Kham {
     @Column
     private String dateout;
     private String status;
+    private String type;
+    private int tongTien;
     @OneToOne
     @JoinColumn(name = "id_bs")
-    BacSy bacSy;
+    BacSi bacSy;
     @OneToOne
     @JoinColumn(name = "id_bn")
     BenhNhan benhNhan;

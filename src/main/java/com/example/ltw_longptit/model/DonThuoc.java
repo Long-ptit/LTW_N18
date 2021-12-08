@@ -8,18 +8,14 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table
-public class HoaDon {
+public class DonThuoc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_donthuoc")
     private int id;
-    @Column
-    private String date;
-
     @OneToOne
     @JoinColumn(name = "id_kham")//name="tên cột khóa ngoại"
     Kham kham;
-
     @Column
     private int tongTien;
 }

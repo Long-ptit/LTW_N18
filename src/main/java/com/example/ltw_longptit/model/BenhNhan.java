@@ -13,5 +13,9 @@ public class BenhNhan {
     @Column(name = "id_bn")
     private int id;
     @Column
-    private String name;
+    private String ten;
+    private String ngaySinh;
+    private String diaChi;
+    private String sdt;
+
 }

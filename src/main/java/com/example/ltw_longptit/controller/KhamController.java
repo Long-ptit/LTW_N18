@@ -164,12 +164,12 @@ public class KhamController {
 //                continue;
 //            }
             //lọc các bênh giống nhaui liên tiếp
-            if(status.equals("normal") && status1.equals("have") && maBenh == maBenh1 ) {
+            if(status.equals("bình thường") && status1.equals("mắc bệnh") && maBenh == maBenh1 ) {
                 listKham.remove(i);
                 i--;
                 continue;
             }
-            if(status1.equals("normal") && maBenh != maBenh1 ) {
+            if(status1.equals("bình thường") && maBenh != maBenh1 ) {
                 listKham.remove(i+1);
                 continue;
             }
@@ -199,7 +199,7 @@ public class KhamController {
             int count = 0;
             List<Kham> list = khamRepository.getAllKhamByBenh(keyword, String.valueOf(dsBenh.get(i)));
             for(int j=0 ; j<list.size() ; j++) {
-                 if(list.get(j).getStatus().equals("have")) {
+                 if(list.get(j).getStatus().equals("mắc bệnh")) {
                     count++;
                 }
             }
@@ -211,6 +211,11 @@ public class KhamController {
             soLanBenhList.add(soLanBenh);
         }
         return soLanBenhList;
+    }
+
+    @GetMapping("/bn/{id}")
+    public Iterable<Kham> getAllKhamTheoBenhNhan(@PathVariable("id") String id) {
+        return khamRepository.getKhamTheoIdBenhNhan(id);
     }
 
 }

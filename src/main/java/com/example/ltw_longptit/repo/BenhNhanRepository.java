@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface BenhNhanRepository extends JpaRepository<BenhNhan, Integer> {
     @Query(value = "SELECT * from benh_nhan where ten like %:keyword%" , nativeQuery = true)
-    public List<BenhNhan> searchBenhNhan(@Param("keyword") String keyword);
+    public List<BenhNhan> searchBenhNhan(String keyword);
 }

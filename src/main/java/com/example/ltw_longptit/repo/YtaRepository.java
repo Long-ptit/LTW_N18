@@ -10,5 +10,5 @@ import java.util.List;
 public interface YtaRepository extends JpaRepository<Yta, Integer> {
 
     @Query(value = "SELECT yta from Yta yta where yta.ytaTen like %:keyword%")
-    public List<Yta> searchYta(@Param("keyword") String keyword);
+    public List<Yta> searchYta( String keyword);
 }

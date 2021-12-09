@@ -15,7 +15,6 @@ public class ThuocSuDung {
     private int id;
     @Column
     private int soLuong;
-
     @ManyToOne
     @JoinColumn(name = "id_thuoc")//name="tên cột khóa ngoại"
     Thuoc thuoc;

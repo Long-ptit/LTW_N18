@@ -17,7 +17,7 @@ public class Thuoc {
 
     @Column
     @Min(value = 0 , message = "Giá phải lớn hơn 0")
-    private double gia;
+    private int gia;
 
     @Column
     @NotBlank(message = "Thiếu Tên Thuốc")

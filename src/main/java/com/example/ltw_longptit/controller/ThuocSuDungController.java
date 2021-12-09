@@ -59,5 +59,11 @@ public class ThuocSuDungController {
         return tsdRepository.statisticMedicineUsedbyPrescriptionId(id);
     }
 
+    @DeleteMapping("deleteByDonThuoc/{id}")
+    public void deleteThuocTheoDonThoc(@PathVariable("id") Integer id) {
+            tsdRepository.deleteThuocSuDungTheoDonThuoc(String.valueOf(id));
+
+    }
+
 
 }

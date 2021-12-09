@@ -52,4 +52,15 @@ public class DonThuocController {
         } catch (EmptyResultDataAccessException e) {
         }
     }
+
+    @GetMapping("/get-donthuoc-id-kham/{id}")
+    public DonThuoc getDocThuocByIdKham(@PathVariable("id") String id) {
+        return donThuocRepository.getDonThuocTheoIdKham(id);
+    }
+
+    @DeleteMapping("/delete-donthuoc-id-kham/{id}")
+    public void deleteThuocTheoIdKham(@PathVariable("id") String id) {
+        DonThuoc donThuoc = donThuocRepository.getDonThuocTheoIdKham(id);
+        donThuocRepository.deleteById(donThuoc.getId());
+    }
 }

@@ -10,26 +10,29 @@ import java.util.List;
 
 public interface KhamRepository extends JpaRepository<Kham, Integer> {
 
-    @Query(value = "select * from kham where datein like %:keyword% and status = 'have'",nativeQuery = true)
-    public List<Kham> getAllKhamByThangMacBenh(@Param("keyword") String keyword);
+    @Query(value = "select * from kham where datein like %:keyword% and status = 'mắc bệnh'",nativeQuery = true)
+    public List<Kham> getAllKhamByThangMacBenh(String keyword);
 
     @Query(value = "select * from kham where datein like %:keyword%",nativeQuery = true)
-    public List<Kham> getAllKhamByThang(@Param("keyword") String keyword);
+    public List<Kham> getAllKhamByThang(String keyword);
 
     @Query(value = "select * from kham where datein like %:keyword% and id_benh = :id",nativeQuery = true)
-    public List<Kham> getAllKhamByBenh(@Param("keyword") String keyword, @Param("id") String id );
+    public List<Kham> getAllKhamByBenh(String keyword, String id );
 
     @Query(value = "select distinct(id_benh) from kham where datein like %:keyword% ",nativeQuery = true)
-    public List<Integer> getBenhTrongThang(@Param("keyword") String keyword);
+    public List<Integer> getBenhTrongThang(String keyword);
 
-    @Query(value = "select distinct(id_bn) from kham where datein like %:keyword% and id_bs = :id  and status = 'have'",nativeQuery = true)
-    public List<Integer> getAllKhamByBacSy(@Param("keyword") String keyword, @Param("id") String id);
+    @Query(value = "select distinct(id_bn) from kham where datein like %:keyword% and id_bs = :id  and status = 'mắc bệnh'",nativeQuery = true)
+    public List<Integer> getAllKhamByBacSy(String keyword, String id);
 
     @Query(value = "select * from kham where datein like %:keyword% and id_bn = :id",nativeQuery = true)
-    public List<Kham> getAllKhamByBenhNhan(@Param("keyword") String keyword ,@Param("id") String id);
+    public List<Kham> getAllKhamByBenhNhan( String keyword , String id);
 
     @Query(value = "select * from kham where id_bs = :id_bs and id_bn = :id_bn limit 1",nativeQuery = true)
-    public Kham getKham(@Param("id_bn") String id_bn, @Param("id_bs") String id_bs);
+    public Kham getKham( String id_bn, String id_bs);
+
+    @Query(value = "select * from kham where id_bn =:id",nativeQuery = true)
+    public List<Kham> getKhamTheoIdBenhNhan(String id);
 
     
 

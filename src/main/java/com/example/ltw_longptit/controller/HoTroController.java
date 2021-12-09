@@ -66,13 +66,14 @@ public class HoTroController {
         return hoTroRepository.getHoTroTheoIdYTa(keyword, id);
     }
 
-
+//2021-12
     public LuongYTa getLuongYTa(String keyword, String id) {
             int soLan = hoTroRepository.getSoLanHoTro(keyword, id);
             Yta  yta = ytaRepo.getById(Integer.parseInt(id));
             LuongYTa luongYTa = new LuongYTa();
             luongYTa.setLuongCoBan(5000000);
             int luongCongThem = soLan*200000;
+            //set lại thằng y tá
             int luongTong = luongCongThem + 5000000;
             luongYTa.setLuongCongThem(luongCongThem);
             luongYTa.setLuongTong(luongTong);
@@ -99,5 +100,12 @@ public class HoTroController {
 
         return listLuongYTa;
     }
+
+    @DeleteMapping("/delete/hotro-theo-id-kham/{id}")
+    public void deleteHoTroTheoIdKham(@PathVariable("id") String id) {
+        hoTroRepository.deleteHoTroTheoIdKham(id);
+    }
+
+
 
 }

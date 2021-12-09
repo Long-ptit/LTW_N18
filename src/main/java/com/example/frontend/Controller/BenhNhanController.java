@@ -6,12 +6,11 @@ import com.example.frontend.enity.Benh;
 import com.example.frontend.enity.BenhNhan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,16 +31,18 @@ public class BenhNhanController {
     @GetMapping("/create")
     public String createBenhNhan(Model model)
     {
-        BenhNhan benhNhan = new BenhNhan();
-        model.addAttribute("benhnhan",benhNhan);
+        BenhNhan benhnhan = new BenhNhan();
+        model.addAttribute("benhnhan",benhnhan);
         return "benhnhan/addBenhNhan";
     }
 
     @PostMapping("/save")
-    public String save(BenhNhan benhNhan)
+    public String save(@Valid @ModelAttribute("benhnhan") BenhNhan benhnhan, Errors errors)
     {
-        rest.postForObject("http://localhost:8080/benhnhan", benhNhan, BenhNhan.class);
-        System.out.println(benhNhan.toString());
+        System.out.println(errors.toString());
+        if (errors.hasErrors())  return "benhnhan/addBenhNhan";
+        rest.postForObject("http://localhost:8080/benhnhan", benhnhan, BenhNhan.class);
+        //System.out.println(benhnhan.toString());
         return "redirect:/benhnhan/current";
     }
 

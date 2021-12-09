@@ -3,9 +3,11 @@ package com.example.frontend.Controller;
 import com.example.frontend.enity.Thuoc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,7 +32,11 @@ public class ThuocController {
     }
 
     @PostMapping("/save")
-    public String save(Thuoc thuoc) {
+    public String save(@Valid Thuoc thuoc, Errors errors) {
+        System.out.println(errors.toString());
+            if (errors.hasErrors()) {
+                return "thuoc/addThuoc";
+            }
             rest.postForObject("http://localhost:8080/thuoc/add-thuoc",thuoc, Thuoc.class);
             return "redirect:/thuoc/current";
     }

@@ -1,12 +1,18 @@
 package com.example.frontend.Controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.*;
 import com.example.frontend.enity.BacSi;
+
+import javax.validation.Valid;
 import java.util.*;
+
+@Slf4j
 @Controller
 @RequestMapping("/bacsi")
 public class BacSiController {
@@ -29,8 +35,12 @@ public class BacSiController {
     }
 
     @PostMapping("/save")
-    public String save(BacSi bacsi)
+    public String save( @Valid BacSi bacsi, Errors errors)
     {
+        System.out.println("e roo"+errors.toString());
+        if (errors.hasErrors()){
+            return "bacsi/addBacSi";
+        }
         rest.postForObject("http://localhost:8080/bacsi", bacsi, BacSi.class);
         System.out.println(bacsi.toString());
         return "redirect:/bacsi/current";

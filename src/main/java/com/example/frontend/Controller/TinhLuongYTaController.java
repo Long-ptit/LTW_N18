@@ -43,7 +43,6 @@ public class TinhLuongYTaController {
         List<HoTro> listHoTro = Arrays.asList(rest.getForObject(url + "/hotro/tk/yta/{keyword}/{id}", HoTro[].class, keyword, id));
         Yta yta = rest.getForObject(url + "/yta/{id}", Yta.class, id);
         model.addAttribute("listHoTro", listHoTro);
-        model.addAttribute("yta", yta);
         return "yta/tlYTaResult";
     }
 

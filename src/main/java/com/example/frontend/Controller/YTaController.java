@@ -3,9 +3,11 @@ package com.example.frontend.Controller;
 import com.example.frontend.enity.Yta;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,9 +35,11 @@ public class YTaController {
 
 
     @PostMapping("/save")
-    public String save(Yta yta) {
+    public String save(@Valid Yta yta, Errors errors) {
         //yta.setYtaThamNien(5);
-
+        if (errors.hasErrors()) {
+            return "yta/addYTa";
+        }
         rest.postForObject("http://localhost:8080/yta",yta, Yta.class);
         System.out.println(yta.toString());
         return "redirect:/yta/current";

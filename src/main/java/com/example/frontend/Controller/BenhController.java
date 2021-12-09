@@ -3,6 +3,7 @@ package com.example.frontend.Controller;
 import com.example.frontend.enity.Benh;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 //import javax.validation.Valid;
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +35,10 @@ public class BenhController {
     }
 
     @PostMapping("/save")
-    public String save(Benh benh) {
+    public String save(@Valid Benh benh, Errors errors) {
+        if(errors.hasErrors()) {
+            return "benh/addBenh";
+        }
             rest.postForObject("http://localhost:8080/benh/add-benh",benh, Benh.class);
             return "redirect:/benh/current";
     }

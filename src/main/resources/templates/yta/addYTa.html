@@ -21,6 +21,7 @@
         <div class="form-group">
             <label>Chứng minh thư:</label>
             <input type="text" class="form-control" th:field="*{ytaCMT}"/>
+            <div th:if="${#fields.hasErrors('ytaCMT')}" th:errors="*{ytaCMT}"></div>
         </div>
         <div class="form-group">
             <label>Ngày sinh:</label>

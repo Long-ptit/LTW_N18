@@ -2,42 +2,16 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <title>LTW PTIT N18</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://localhost/weblayout/tablestyle.css">
-    <script type="text/javascript">
-        $(document).ready(function(){
-            // Activate tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Select/Deselect checkboxes
-            var checkbox = $('table tbody input[type="checkbox"]');
-            $("#selectAll").click(function(){
-                if(this.checked){
-                    checkbox.each(function(){
-                        this.checked = true;
-                    });
-                } else{
-                    checkbox.each(function(){
-                        this.checked = false;
-                    });
-                }
-            });
-            checkbox.click(function(){
-                if(!this.checked){
-                    $("#selectAll").prop("checked", false);
-                }
-            });
-        });
-    </script>
 </head>
 <body>
 <div class="container">
@@ -48,8 +22,8 @@
                     <h2>Quản lí Thuốc</h2>
                 </div>
                 <div class="col-sm-6">
-                    <a th:href="@{/thuoc/create}" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Thêm Thuốc</span></a>
-
+                    <a th:href="@{/}" class="btn btn-info"><i class='bx bx-home'></i><span>Home</span></a>
+                    <a th:href="@{/thuoc/create}" class="btn btn-success"><i class='bx bx-add-to-queue' ></i><span>Thêm thuốc</span></a>
                 </div>
             </div>
         </div>
@@ -75,6 +49,7 @@
                 <th>Tên</th>
                 <th>Giá</th>
                 <th>Loại Thuốc</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>

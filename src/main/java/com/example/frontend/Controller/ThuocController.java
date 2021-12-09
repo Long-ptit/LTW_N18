@@ -62,6 +62,7 @@ public class ThuocController {
     @GetMapping("/search")
     public String searchThuoc( @RequestParam("key") String key, Model model){
         key = key.trim().toLowerCase();
+        if (key.equals("")) return "redirect:/thuoc/current";
         List<Thuoc> list = Arrays.asList(rest.getForObject("http://localhost:8080/thuoc/search-list/{key}",Thuoc[].class,key));
         model.addAttribute("listThuoc", list);
         return "thuoc/dsThuoc";

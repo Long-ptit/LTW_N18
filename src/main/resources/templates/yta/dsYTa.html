@@ -2,10 +2,11 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <title>LTW PTIT N18</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,8 +23,8 @@
                     <h2>Quản lí y tá</h2>
                 </div>
                 <div class="col-sm-6">
-                    <a th:href="@{/yta/create}" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Thêm y tá</span></a>
-
+                    <a th:href="@{/}" class="btn btn-info"><i class='bx bx-home'></i><span>Home</span></a>
+                    <a th:href="@{/yta/create}" class="btn btn-success"><i class='bx bx-add-to-queue' ></i><span>Thêm y tá</span></a>
                 </div>
             </div>
         </div>
@@ -31,8 +32,6 @@
             <div class="row">
                 <div class="col-xs-6 col-md-4">
                     <div class="input-group">
-<!--                        <input type="text" name="keyword" /> &nbsp; <input type="submit"-->
-<!--                                                                           value="Search" />-->
                         <input type="text" class="form-control" placeholder="Tìm kiếm" id="txtSearch" name="keywordabc"/>
                         <div class="input-group-btn">
                             <button  class="btn btn-success" type="submit" >
@@ -67,20 +66,6 @@
                 <td th:text="${yta.ytaDiaChi}"></td>
                 <td th:text="${yta.ytaSDT}"></td>
                 <td th:text="${yta.ytaThamNien} + ' năm'"></td>
-
-
-
-
-<!--                <td>1</td>-->
-<!--                <td>4 năm</td>-->
-<!--                <td>123456789</td>-->
-<!--                <td>Thành</td>-->
-<!--                <td>(171) 555-2222</td>-->
-<!--                <td>Nam Định</td>-->
-<!--                <td>25-12-2000</td>-->
-<!--                <td>1</td>-->
-<!--                <td>Cao</td>-->
-<!--                <td>Cao</td>-->
                 <td>
                     <a th:href="@{/yta/update(id=${yta.id})}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                     <a th:href="@{/yta/delete(id=${yta.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>

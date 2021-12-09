@@ -2,6 +2,7 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>Thống kê</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,17 +25,6 @@
 </style>
 <body>
 <h3>Thống kê bệnh</h3>
-
-<!--<label>Số lần chữa chuỗi: </label>-->
-<!--<label th:text="*{soLan}" ></label> <br>-->
-<!--<label>Tiền lương cơ bản: </label>-->
-<!--<label th:text="*{luongCoBan}" ></label> <br>-->
-<!--<label>Tiền lương cộng thêm: </label>-->
-<!--<label th:text="*{luongCongThem}" ></label> <br>-->
-<!--<label>Tổng tiền: </label>-->
-<!--<label th:text="*{luongTong}" ></label> <br>-->
-<!--<br>-->
-
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -42,13 +32,16 @@
                 <div class="col-sm-6">
                     <h2>Thống kê bệnh</h2>
                 </div>
+                <div class="col-sm-6">
+                    <a th:href="@{/}" class="btn btn-info"><i class='bx bx-home'></i><span>Home</span></a>
+                </div>
             </div>
         </div>
         <form th:action="@{/tk/benh/search}" method="get">
             <div class="row">
                 <div class="col-xs-6 col-md-4">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm" id="txtSearch" name="keyword" th:value="${keyword}"/>
+                        <input type="text" class="form-control" placeholder="YYYY-MM" id="txtSearch" name="keyword" th:value="${keyword}"/>
                         <div class="input-group-btn">
                             <button  class="btn btn-success" type="submit" >
                                 <span class="glyphicon glyphicon-search"></span>

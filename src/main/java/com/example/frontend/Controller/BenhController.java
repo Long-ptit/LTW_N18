@@ -21,7 +21,7 @@ public class BenhController {
     @GetMapping("/current")
     public String homeBenh(Model model){
         List<Benh> list = Arrays.asList(rest.getForObject("http://localhost:8080/benh/list-benh", Benh[].class));
-        model.addAttribute("listBenh", list);
+       model.addAttribute("listBenh", list);
         return "benh/dsBenh";
     }
 
@@ -65,6 +65,7 @@ public class BenhController {
     @GetMapping("/search")
     public String searchbenh( @RequestParam("key") String key, Model model){
         key = key.trim().toLowerCase();
+        if (key.equals("")) return "redirect:/benh/current";
         List<Benh> list = Arrays.asList(rest.getForObject("http://localhost:8080/benh/search-list/{key}",Benh[].class,key));
         model.addAttribute("listBenh", list);
         return "benh/dsBenh";

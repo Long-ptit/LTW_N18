@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <title>LTW PTIT N18</title>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,9 +22,10 @@
                 <div class="col-sm-6">
                     <h2>Quản lí bác sĩ</h2>
                 </div>
-                <div class="col-sm-6">
-                    <a th:href="@{/bacsi/create}" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Thêm bác sĩ</span></a>
 
+                <div class="col-sm-6">
+                    <a th:href="@{/}" class="btn btn-info"><i class='bx bx-home'></i><span>Home</span></a>
+                    <a th:href="@{/bacsi/create}" class="btn btn-success"><i class='bx bx-add-to-queue' ></i><span>Thêm bác sĩ</span></a>
                 </div>
             </div>
         </div>
@@ -70,7 +72,6 @@
                 <td th:text="${bacsi.bacsyBacNghe}"></td>
                 <td th:text="${bacsi.bacsyTrinhDoDaoTao}"></td>
                 <td th:text="${bacsi.bacsyChuyenMon}"></td>
-
                 <td>
                     <a th:href="@{/bacsi/update(id=${bacsi.id})}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                     <a th:href="@{/bacsi/delete(id=${bacsi.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>

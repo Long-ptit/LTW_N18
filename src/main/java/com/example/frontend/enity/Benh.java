@@ -8,8 +8,8 @@ import javax.validation.constraints.NotBlank;
 public class Benh {
 
     private long id;
-    @NotBlank(message = "heolo")
+    @NotBlank(message = "Vui lòng nhập đủ thông tin")
     private String ten;
-    @NotBlank(message = "heolo")
+    @NotBlank(message = "Vui lòng nhập đủ thông tin")
     private String moTa;
 }

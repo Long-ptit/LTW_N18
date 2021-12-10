@@ -61,6 +61,9 @@ public class ThuocController {
     @GetMapping("/delete")
     public String deleteThuoc(@RequestParam("id") long id){
         System.out.println("Thanh Cong");
+        //cập nhật lại đơn thuốc
+        //gọi tất cả các đơn thuốc mà chứa thuốc đó, sửa lại
+
         rest.delete("http://localhost:8080/thuoc/delete-thuoc/{id}",id);
         return "redirect:/thuoc/current";
     }

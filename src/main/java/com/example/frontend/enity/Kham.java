@@ -2,6 +2,9 @@ package com.example.frontend.enity;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Data
 public class Kham {
 
@@ -10,7 +13,7 @@ public class Kham {
     private String dateout;
     private String status;
     private String type;
-    private int tongTien;
+    private Integer tongTien;
     BacSi bacSy;
     BenhNhan benhNhan;
     Benh benh;

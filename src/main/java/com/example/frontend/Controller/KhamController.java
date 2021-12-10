@@ -3,9 +3,11 @@ package com.example.frontend.Controller;
 import com.example.frontend.enity.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,10 +43,11 @@ public class KhamController {
     }
 
     @PostMapping("/save")
-    public String saveKham(Kham kham,@RequestParam("idYta") String idYta,@RequestParam("idThuoc") String idThuoc, @RequestParam("soLuong") String soLuong) {
+    public String saveKham(@Valid @ModelAttribute("kham") Kham kham, @RequestParam("idYta") String idYta, @RequestParam("idThuoc") String idThuoc, @RequestParam("soLuong") String soLuong, Errors errors) {
+        if(errors.hasErrors()) return "kham/addKham";
+
         System.out.println("thuoc id " + idThuoc);//a,x,x
         System.out.println("soluong" +soLuong);
-        if( soLuong.length() == 0) return "redirect:/kham/";
         List<Integer> soLuongThuoc = new ArrayList<>();
         List<String> listSoluong = Arrays.asList(soLuong.split(","));
         for (int i=0 ; i<listSoluong.size() ; i++) {
@@ -67,13 +70,22 @@ public class KhamController {
             rest.postForObject(url + "/hotro",hoTro , HoTro.class);
         }
         List<Thuoc> listThuoc = new ArrayList<>();
-        if( idThuoc.length() == 1) return "redirect:/kham/";
-
+//        if( idThuoc.length() == 1) return "redirect:/kham/";
+//        if( soLuong.length() == 0) return "redirect:/kham/";
         //trừ đi kí tự check null
-        idThuoc = idThuoc.substring(0, idThuoc.length()-2);
-        List<Integer> idListThuoc = new ArrayList<>();
-        for(String i : idThuoc.split(",")) {
-            listThuoc.add(rest.getForObject(url+"/thuoc/get-thuoc/{id}",Thuoc.class, Integer.valueOf(i)));
+       if(idThuoc.length() != 1)  idThuoc = idThuoc.substring(0, idThuoc.length()-2);
+        List<String> listIdThuocc = Arrays.asList(idThuoc.split(","));
+        System.out.println("hehe"+listIdThuocc.get(0));
+        List<String> listIdThuocc1 = new ArrayList<>();
+        for(int i=0 ; i<listIdThuocc.size() ; i++) {
+            if(!listIdThuocc.get(i).equals("") && !listIdThuocc.get(i).equals("a")) {
+                System.out.println("vl"+listIdThuocc.get(i));
+                System.out.println("add");
+                listIdThuocc1.add((listIdThuocc.get(i)));
+            }
+        }
+        for( int i=0 ; i<listIdThuocc1.size() ; i++) {
+            listThuoc.add(rest.getForObject(url+"/thuoc/get-thuoc/{id}",Thuoc.class, listIdThuocc1.get(i)));
         }
         int tongTien = 0;
         for( int i=0 ; i<listThuoc.size() ; i++) {
@@ -119,7 +131,6 @@ public class KhamController {
 
     @PostMapping("/saveEdit")
     public String saveEditKham(Kham kham,@RequestParam("idYta") String idYta,@RequestParam("idThuoc") String idThuoc, @RequestParam("soLuong") String soLuong) {
-        if( soLuong.length() == 0) return "redirect:/kham/";
         List<Integer> soLuongThuoc = new ArrayList<>();
         List<String> listSoluong = Arrays.asList(soLuong.split(","));
         for (int i=0 ; i<listSoluong.size() ; i++) {
@@ -135,6 +146,7 @@ public class KhamController {
         }
         Kham a = kham;
         rest.delete(url+"/hotro/delete/hotro-theo-id-kham/{id}", a.getId());
+        rest.put(url+"/kham/{id}", kham,kham.getId());
         for(int i = 0; i< ytaList.size() ; i++) {
             HoTro hoTro = new HoTro();
             Yta yta1 = ytaList.get(i);
@@ -145,8 +157,10 @@ public class KhamController {
         DonThuoc donThuoc1 = rest.getForObject(url + "/donthuoc/get-donthuoc-id-kham/{id}", DonThuoc.class, a.getId());
         rest.delete(url+"/thuocsd/deleteByDonThuoc/{id}", donThuoc1.getId());
 
-
+        donThuoc1.setTongTien(0);
         List<Thuoc> listThuoc = new ArrayList<>();
+        rest.put(url+"/donthuoc/{id}", donThuoc1, donThuoc1.getId());
+        // truong hop xóa hết thuôc, đã xóa không cần add thêm thuốc
         if( idThuoc.length() == 1) return "redirect:/kham/";
         idThuoc = idThuoc.substring(0, idThuoc.length()-2);
         for(String i : idThuoc.split(",")) {
@@ -168,7 +182,6 @@ public class KhamController {
 
         donThuoc1.setTongTien(tongTien);
         rest.put(url+"/donthuoc/{id}", donThuoc1, donThuoc1.getId());
-        rest.put(url+"/kham/{id}", kham,kham.getId());
 
 
         return "redirect:/kham/";
@@ -176,14 +189,19 @@ public class KhamController {
 
     @GetMapping("/delete")
     public String deleteKham(@RequestParam("id") String id) {
-        rest.delete(url +"/kham/{id}", id);
+        rest.delete(url+"/kham/{id}",id);
+
         return "redirect:/kham/";
     }
 
     @GetMapping("/viewDonThuoc")
     public String viewDonThuoc(Model model,@RequestParam("id") String id) {
         DonThuoc donThuoc = rest.getForObject(url+"/donthuoc/get-donthuoc-id-kham/{id}", DonThuoc.class, id);
-        List<ThuocSuDung> listThuoc = Arrays.asList(rest.getForObject(url+ "/thuocsd/thuoctronghoadon/{id}", ThuocSuDung[].class, donThuoc.getId()));
+        List<ThuocSuDung> listThuoc;
+        listThuoc = Arrays.asList(rest.getForObject(url+ "/thuocsd/thuoctronghoadon/{id}", ThuocSuDung[].class, donThuoc.getId()));
+        if (listThuoc == null) {
+            listThuoc = new ArrayList<>();
+        }
         model.addAttribute(donThuoc);
         model.addAttribute(listThuoc);
 

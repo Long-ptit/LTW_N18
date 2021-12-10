@@ -3,17 +3,23 @@ package com.example.frontend.enity;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
 public class Yta {
         private int id;
-        private int ytaThamNien;
-        @NotBlank(message = "fuck you bitch")
+        @NotNull(message = "Vui lòng nhập đủ")
+        private Integer ytaThamNien;
+        @NotBlank(message = "Vui lòng nhập đủ")
         private String ytaCMT;
+        @NotBlank(message = "Vui lòng nhập đủ")
         private String ytaTen;
+        @NotBlank(message = "Vui lòng nhập đủ")
         private String ytaSDT;
+        @NotBlank(message = "Vui lòng nhập đủ")
         private String ytaDiaChi;
+        @NotBlank(message = "Vui lòng nhập đủ")
         private String ytaNgaySinh;
 
         public String toString() {

@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class HoTro {
     private int id;
+
+
     Yta yta;
     Kham kham;
 }

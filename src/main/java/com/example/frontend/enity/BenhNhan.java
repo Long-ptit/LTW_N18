@@ -7,12 +7,12 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class BenhNhan {
     private int id;
-    @NotBlank(message = "ao ma lazada")
+    @NotBlank(message = "Vui lòng nhập đủ thông tin")
     private String ten;
-    @NotBlank(message = "ao ma lazada")
+    @NotBlank(message = "Vui lòng nhập đủ thông tin")
     private String ngaySinh;
-    @NotBlank(message = "ao ma lazada")
+    @NotBlank(message = "Vui lòng nhập đủ thông tin")
     private String diaChi;
-    @NotBlank(message = "ao ma lazada")
+    @NotBlank(message = "Vui lòng nhập đủ thông tin")
     private String sdt;
 }

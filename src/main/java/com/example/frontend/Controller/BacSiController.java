@@ -35,7 +35,7 @@ public class BacSiController {
     }
 
     @PostMapping("/save")
-    public String save( @Valid BacSi bacsi, Errors errors)
+    public String save( @Valid @ModelAttribute("bacsi") BacSi bacsi, Errors errors)
     {
         System.out.println("e roo"+errors.toString());
         if (errors.hasErrors()){

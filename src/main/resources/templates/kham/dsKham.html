@@ -79,10 +79,10 @@
                 <td th:text="${kham.tongTien}"></td>
 
                 <td>
-                    <a th:href="@{/kham/viewDonThuoc(id=${kham.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete Kham">&#xE872;</i></a>
+                    <a th:href="@{/kham/viewDonThuoc(id=${kham.id})}" class="btn btn-primary"  role="button">Xem</a>
                 </td>
                 <td>
-                    <a th:href="@{/kham/viewYta(id=${kham.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete Kham">&#xE872;</i></a>
+                    <a th:href="@{/kham/viewYta(id=${kham.id})}" class="btn btn-primary" role="button">Xem</a>
                 </td>
                 <td>
                     <a th:href="@{/kham/edit(id=${kham.id})}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit Kham">&#xE254;</i></a>

@@ -16,20 +16,33 @@
     <form method="post" th:action="@{/kham/save}" th:object="${kham}">
         <div>
             <label>Ngày vào:</label>
-            <input type="text" class="form-control" th:field="*{datein}">
+            <input type="text" placeholder="YYYY-MM-DD" class="form-control" th:field="*{datein}">
         </div>
         <div class="form-group">
             <label>Ngày ra:</label>
-            <input type="text" class="form-control" th:field="*{dateout}"/>
+            <input type="text" placeholder="YYYY-MM-DD" class="form-control" th:field="*{dateout}"/>
         </div>
-        <div class="form-group">
-            <label>kiểu:</label>
-            <input type="text" class="form-control" th:field="*{type}"/>
+<!--        <div class="form-group">-->
+<!--            <label>kiểu:</label>-->
+<!--            <input type="text" class="form-control" th:field="*{type}"/>-->
+<!--        </div>-->
+
+        <div>
+            <label>Kiểu:</label>
+            <select th:field="*{type}">
+                <option value="khám mới" >Khám mới</option>
+                <option value="khám lại">Khám lại</option>
+            </select>
         </div>
-        <div class="form-group">
+
+        <div>
             <label>Kết luận:</label>
-            <input type="text" class="form-control" th:field="*{status}"/>
+            <select th:field="*{status}">
+                <option value="mắc bệnh" >Mắc bệnh</option>
+                <option value="bình thường">Bình thường</option>
+            </select>
         </div>
+
 
         <div class="form-group">
             <label>Tổng phí khám:</label>

@@ -35,7 +35,7 @@ public class YTaController {
 
 
     @PostMapping("/save")
-    public String save(@Valid Yta yta, Errors errors) {
+    public String save(@Valid @ModelAttribute("yta") Yta yta, Errors errors) {
         //yta.setYtaThamNien(5);
         if (errors.hasErrors()) {
             return "yta/addYTa";

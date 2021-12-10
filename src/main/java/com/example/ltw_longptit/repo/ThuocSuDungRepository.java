@@ -20,6 +20,10 @@ public interface ThuocSuDungRepository extends JpaRepository<ThuocSuDung, Intege
     @Query(value = "delete from thuoc_su_dung where id_donthuoc=:id", nativeQuery = true)
     public void deleteThuocSuDungTheoDonThuoc(String id);
 
+//
+//    @Query(value = "select * from thuoc_su_dung where id_thuoc=:id",nativeQuery = true)
+//    public List<ThuocSuDung> getThuocSuDungTheoIdThuoc(String id);
+
 
 
 

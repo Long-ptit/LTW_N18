@@ -7,8 +7,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-
 @Data
 @Entity
 @Table
@@ -39,7 +37,7 @@ public class BacSi {
     private String bacsyTrinhDoDaoTao;
     @Column
     private String bacsyChuyenMon;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bacSy", fetch = FetchType.LAZY)
 //    @JsonManagedReference
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bacSy", fetch = FetchType.LAZY)
 //    private List<Kham> listKham = new ArrayList<>();
 }

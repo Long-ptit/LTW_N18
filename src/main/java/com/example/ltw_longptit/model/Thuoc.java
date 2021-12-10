@@ -1,5 +1,6 @@
 package com.example.ltw_longptit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -31,6 +32,6 @@ public class Thuoc {
     private String congDung;
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thuoc", fetch = FetchType.LAZY)
-//    @JsonManagedReference
+//    @JsonBackReference
 //    private List<ThuocSuDung> listThuocSd = new ArrayList<>();
 }

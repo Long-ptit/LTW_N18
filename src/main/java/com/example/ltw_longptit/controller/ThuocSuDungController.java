@@ -1,13 +1,10 @@
 package com.example.ltw_longptit.controller;
 
-import com.example.ltw_longptit.model.HoTro;
 import com.example.ltw_longptit.model.ThuocSuDung;
-import com.example.ltw_longptit.repo.HoTroRepository;
 import com.example.ltw_longptit.repo.ThuocSuDungRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RestController
@@ -64,6 +61,5 @@ public class ThuocSuDungController {
             tsdRepository.deleteThuocSuDungTheoDonThuoc(String.valueOf(id));
 
     }
-
 
 }

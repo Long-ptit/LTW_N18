@@ -23,7 +23,7 @@ public class BenhNhan {
     private String diaChi;
     private String sdt;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "benhNhan", fetch = FetchType.LAZY)
-//    @JsonManagedReference
+//    @JsonBackReference
 //    private List<Kham> listKham = new ArrayList<>();
 
 }

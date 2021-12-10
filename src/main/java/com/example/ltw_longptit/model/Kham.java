@@ -27,22 +27,25 @@ public class Kham {
     private String type;
     private int tongTien;
     @ManyToOne()
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_bs")
     BacSi bacSy;
     @ManyToOne()
     @JoinColumn(name = "id_bn")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     BenhNhan benhNhan;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_benh")
     Benh benh;
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kham", fetch = FetchType.LAZY)
-//    @JsonManagedReference
+//    @JsonBackReference
 //    private List<HoTro> listHoTro = new ArrayList<>();
 //
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kham", fetch = FetchType.LAZY)
-//    @JsonManagedReference
-//    private List<DonThuoc> listDonThuocs = new ArrayList<>();
+//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "kham", fetch = FetchType.LAZY)
+//    @JsonBackReference
+//    private DonThuoc donthuoc = new DonThuoc();
 
 
 

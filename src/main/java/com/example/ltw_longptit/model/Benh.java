@@ -1,10 +1,14 @@
 package com.example.ltw_longptit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -22,4 +26,7 @@ public class Benh {
 
     @Column
     private String moTa;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "benh", fetch = FetchType.LAZY)
+//    @JsonManagedReference
+//    private List<Kham> listKham = new ArrayList<>();
 }

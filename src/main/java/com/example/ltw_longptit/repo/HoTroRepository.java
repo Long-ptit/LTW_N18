@@ -25,4 +25,6 @@ public interface HoTroRepository extends JpaRepository<HoTro, Integer> {
     @Modifying
     @Query(value = "delete from ho_tro where id_kham = :id ",nativeQuery = true)
     public void deleteHoTroTheoIdKham(String id);
+
+    
 }

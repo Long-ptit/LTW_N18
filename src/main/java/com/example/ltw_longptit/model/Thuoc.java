@@ -1,10 +1,13 @@
 package com.example.ltw_longptit.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,8 +25,12 @@ public class Thuoc {
     @Column
     @NotBlank(message = "Thiếu Tên Thuốc")
     private  String ten;
-
     @Column
    @NotBlank(message = "Thiếu Tên Loại Thuốc")
     private String loaiThuoc;
+    private String congDung;
+
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thuoc", fetch = FetchType.LAZY)
+//    @JsonManagedReference
+//    private List<ThuocSuDung> listThuocSd = new ArrayList<>();
 }
